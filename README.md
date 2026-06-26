@@ -67,6 +67,3 @@ The application provides the following features:
 
 The database will be created automatically on first run.
 
-## Notes
-
-This project is intended as a beginner-friendly example of a password manager and is not a full production-grade security solution. In a real-world application, additional security measures such as stronger key management and server-side protection should be implemented.
