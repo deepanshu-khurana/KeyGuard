@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-cover bg-center bg-no-repeat flex items-center justify-center min-h-screen relative px-4" 
+      style="background-image: url('{{ url_for('static', filename='login.png') }}');">
+
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm z-0"></div>
+
+    <div class="bg-black/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl shadow-2xl w-full max-w-md z-10 text-white my-auto mx-auto">
+        <div class="text-center mb-6">
+            <h2 class="text-3xl font-extrabold tracking-tight text-white">Welcome Back!</h2>
+            <p class="text-sm text-gray-300 mt-1">Login to your vault</p>
+        </div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="mb-4 p-3 bg-red-500/20 text-red-200 border border-red-500/30 text-sm rounded-lg">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="/login" method="POST" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-200 mb-1">Username</label>
+                <input type="text" name="username" required 
+                       class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-400">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-200 mb-1">Master Password</label>
+                <div class="relative">
+                    <input type="password" id="master_password" name="master_password" required 
+                           class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-400">
+                    <button type="button" onclick="togglePasswordVisibility('master_password')" 
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-300 hover:text-white uppercase tracking-wider">
+                        Show
+                    </button>
+                </div>
+            </div>
+            
+            <button type="submit" 
+                    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2.5 rounded-lg transition duration-200 shadow-lg mt-4">
+                Unlock Vault
+            </button>
+        </form>
+
+        <div class="text-center mt-6 pt-4 border-t border-white/10">
+            <p class="text-sm text-gray-300">
+                New user? <a href="/register" class="text-purple-400 hover:underline font-medium">Create a Master Account</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function togglePasswordVisibility(id) {
+            const el = document.getElementById(id);
+            const btn = el.nextElementSibling;
+            if (el.type === "password") {
+                el.type = "text";
+                btn.innerText = "Hide";
+            } else {
+                el.type = "password";
+                btn.innerText = "Show";
+            }
+        }
+    </script>
+</body>
+</html>
