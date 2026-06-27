@@ -15,9 +15,9 @@ from crypto_utils import (
 
 app = Flask(__name__)
 
-# ---------------------------------------------------------
+
 # CONFIGURATION
-# ---------------------------------------------------------
+
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'super-secret-vault-key-12345')
 
 # Configure local SQLite database
@@ -27,16 +27,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# ---------------------------------------------------------
 # DATABASE MODELS
-# ---------------------------------------------------------
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     master_password_hash = db.Column(db.String(128), nullable=False)
     
-    # Store an individual encryption key per user for maximum AES security
     vault_key = db.Column(db.String(100), nullable=False)
     
     credentials = db.relationship('Credential', backref='owner', lazy=True)
@@ -50,9 +47,7 @@ class Credential(db.Model):
     username_or_email = db.Column(db.String(100), nullable=False)
     encrypted_password = db.Column(db.String(255), nullable=False)
 
-# ---------------------------------------------------------
 # CONTROLLERS & ROUTES
-# ---------------------------------------------------------
 
 @app.route('/')
 def index():
@@ -172,9 +167,7 @@ def logout():
     flash('Vault locked.', 'info')
     return redirect(url_for('index'))
 
-# ---------------------------------------------------------
 # DATABASE INITIALIZATION RUNNER
-# ---------------------------------------------------------
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Generates the local sqlite "vault.db" file automatically if missing
