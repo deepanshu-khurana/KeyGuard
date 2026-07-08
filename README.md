@@ -2,9 +2,11 @@
 
 A sleek, web-based cryptographic password manager built with Flask that allows users to securely generate, store, search, and rotate website credentials. Stored passwords are encrypted on-the-fly using AES-128 (Fernet) and monitored continuously against risk-exposure aging rules.
 
+
 ## About the Project
 
 This project is a high-security, lightweight password vault engine designed to combine advanced cryptographic integrity with a modern, responsive interface. It features a stunning dark glassmorphism theme with customizable localized canvas backdrops and a robust background logic that enforces credential health management.
+
 
 ## Libraries and Technologies Used
 
@@ -21,6 +23,7 @@ The project relies on the following structural libraries:
 - **Tailwind CSS** – Functional utility-first styling engine driving the glassmorphic ambient layout.
 
 - **SQLite** – Embedded zero-configuration database layer ensuring ACID-compliant local persistent data storage.
+
 
 ## Functionalities
 
@@ -52,6 +55,7 @@ The application delivers a suite of secure password management operations:
 
 - **Session Locking**: Single-click logout commands to purge context keys and secure the vault immediately.
 
+
 ## Project Structure
 
 ```text
@@ -71,6 +75,7 @@ password_manager/
     ├── register.html           # Shield-aligned portal generating unique user profiles
     └── vault.html              # Centralized data ledger dashboard handling searches, additions, and updates
 ```
+
 
 ## How to Run the Project
 
@@ -100,6 +105,7 @@ password_manager/
    ```
 
 The local SQLite relational database file (vault.db) will instantiate itself automatically in your folder architecture on the first page load.
+
 
 ## Security Architecture Notes
 
