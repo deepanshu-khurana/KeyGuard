@@ -10,50 +10,51 @@ This project is a high-security, lightweight password vault engine designed to c
 
 The project relies on the following structural libraries:
 
--*Flask* – Core micro-framework handling stateful routing, controller workflows, and secure user sessions.
+- **Flask** – Core micro-framework handling stateful routing, controller workflows, and secure user sessions.
 
--*Flask-SQLAlchemy* – Object-Relational Mapper (ORM) managing transactional queries and SQLite schema integration.
+- **Flask-SQLAlchemy** – Object-Relational Mapper (ORM) managing transactional queries and SQLite schema integration.
 
--*bcrypt* – Advanced computational key-stretching function applied to hash and verify Master Passwords.
+- **bcrypt** – Advanced computational key-stretching function applied to hash and verify Master Passwords.
 
--*cryptography (Fernet)* – Industry-standard symmetric cipher algorithm executing authenticated AES-128 encryption.
+- **cryptography (Fernet)** – Industry-standard symmetric cipher algorithm executing authenticated AES-128 encryption.
 
--*Tailwind CSS* – Functional utility-first styling engine driving the glassmorphic ambient layout.
+- **Tailwind CSS** – Functional utility-first styling engine driving the glassmorphic ambient layout.
 
--*SQLite* – Embedded zero-configuration database layer ensuring ACID-compliant local persistent data storage.
+- **SQLite** – Embedded zero-configuration database layer ensuring ACID-compliant local persistent data storage.
 
 ## Functionalities
 
 The application delivers a suite of secure password management operations:
 
--*Sleek Glassmorphic Dark UI*: Translucent component overlays styled with blur processing filters using custom graphical image assets.
+- **Sleek Glassmorphic Dark UI**: Translucent component overlays styled with blur processing filters using custom graphical image assets.
 
--*Secure Master Authentication*: User accounts fortified with bcrypt salt-stretched hashing. Includes a quick toggle to preview input characters safely.
+- **Secure Master Authentication**: User accounts fortified with bcrypt salt-stretched hashing. Includes a quick toggle to preview input characters safely.
 
--*Isolated Cryptographic Key Chains*: Automatic instantiation of unique, separate AES vault keys for every individual user profile.
+- **Isolated Cryptographic Key Chains**: Automatic instantiation of unique, separate AES vault keys for every individual user profile.
 
--*Password Generation Engine*: Instant calculation of cryptographically strong random strings constrained strictly between 10 and 20 ASCII characters using the secrets library.
+- **Password Generation Engine**: Instant calculation of cryptographically strong random strings constrained strictly between 10 and 20 ASCII characters using the secrets library.
 
--*Two-Way Vault Encryption*: Plaintext passwords are obfuscated via symmetric Fernet logic prior to disk compilation and decrypted exclusively in volatile memory space during UI rendering.
+- **Two-Way Vault Encryption**: Plaintext passwords are obfuscated via symmetric Fernet logic prior to disk compilation and decrypted exclusively in volatile memory space during UI rendering.
 
--*Secure Payload Queries*: Search queries rewritten from GET parameters to internal POST body buffers to wipe credentials completely from global browser history logs.
+- **Secure Payload Queries**: Search queries rewritten from GET parameters to internal POST body buffers to wipe credentials completely from global browser history logs.
 
--*Flexible Chronological Entry Log*: Supports saving or updating accounts using the real-time server timestamp or selecting an exact historic calendar day.
+- **Flexible Chronological Entry Log**: Supports saving or updating accounts using the real-time server timestamp or selecting an exact historic calendar day.
 
--*Rolling Rotation Age Tracker*: Automatic calculations checking row histories against active datetimes to output granular lifespan indicators:
+- **Rolling Rotation Age Tracker**: Automatic calculations checking row histories against active datetimes to output granular lifespan indicators:
 
--*Secure (0–29 Days)*: Green badge confirming acceptable age.
+- **Secure (0–29 Days)**: Green badge confirming acceptable age.
 
--*At Risk (30–44 Days)*: Orange warning badge urging proactive configuration changes.
+- **At Risk (30–44 Days)**: Orange warning badge urging proactive configuration changes.
 
--*Expired / High Risk (45+ Days)*: Red warning badge highlighting critical exposure.
+- **Expired / High Risk (45+ Days)**: Red warning badge highlighting critical exposure.
 
--*Inline Modifiers*: Dynamic form-switching layout allowing users to update existing account parameters and instantly reset rotation calendars without reloading the viewport.
+- **Inline Modifiers**: Dynamic form-switching layout allowing users to update existing account parameters and instantly reset rotation calendars without reloading the viewport.
 
--*Session Locking*: Single-click logout commands to purge context keys and secure the vault immediately.
+- **Session Locking**: Single-click logout commands to purge context keys and secure the vault immediately.
 
 ## Project Structure
 
+```text
 password_manager/
 │
 ├── venv/                       # Virtual environment (isolated dependencies)
@@ -69,6 +70,7 @@ password_manager/
     ├── login.html              # Authenticated entrance interface with interactive show toggles
     ├── register.html           # Shield-aligned portal generating unique user profiles
     └── vault.html              # Centralized data ledger dashboard handling searches, additions, and updates
+```
 
 ## How to Run the Project
 
@@ -101,8 +103,8 @@ The local SQLite relational database file (vault.db) will instantiate itself aut
 
 ## Security Architecture Notes
 
--*Data Privacy*: Master passwords are processed exclusively as unidirectional hashes; the plain text is never stored or logged anywhere on the host machine.
+- *Data Privacy*: Master passwords are processed exclusively as unidirectional hashes; the plain text is never stored or logged anywhere on the host machine.
 
--*Key Separation*: Compromise of one user's database entry does not impact any other profile, as every vault row utilizes localized multi-tenant key boundaries.
+- *Key Separation*: Compromise of one user's database entry does not impact any other profile, as every vault row utilizes localized multi-tenant key boundaries.
 
--*Frontend Controls*: On-the-fly decryption patterns ensure your raw password arrays are never permanently stored inside the HTML document tree on the server side—they exist in plain text only within your active browser runtime instance.
+- *Frontend Controls*: On-the-fly decryption patterns ensure your raw password arrays are never permanently stored inside the HTML document tree on the server side—they exist in plain text only within your active browser runtime instance.
